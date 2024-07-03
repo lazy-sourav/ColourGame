@@ -43,7 +43,12 @@
         }
 
         .container {
+            width: 100dvw;
             padding: 15px;
+            box-sizing: border-box;
+        }
+        .container > *{
+            box-sizing: border-box;
         }
 
         .trend,
@@ -55,7 +60,7 @@
             max-width: 415px;
             box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.1);
             border: solid #F2F3F5 2px;
-            height: 95px;
+            height: 115px;
             border-radius: 15px;
             padding: 8px 25px;
             overflow: hidden;
@@ -66,6 +71,7 @@
             display: flex;
             flex-direction: row-reverse;
             flex-wrap: wrap-reverse;
+            justify-content: center;
         }
 
         .trend img {
@@ -227,7 +233,7 @@
         }
 
         .time,
-        .ref,
+        
         .showHistory {
             display: flex;
             padding: 10px;
@@ -235,6 +241,7 @@
             border-radius: 7px;
             background-color: #fbdfdf;
             justify-content: center;
+            margin: 0 5px;
         }
 
         .time>img {
@@ -242,10 +249,9 @@
         }
 
         .time {
-            width: 133px;
+            width: 140px;
         }
 
-        .ref,
         .showHistory {
             cursor: pointer;
         }
@@ -297,7 +303,6 @@
         .here {
             display: none;
         }
-
         /* .dot{
             height: 20px;
             width: 20px;
@@ -308,84 +313,83 @@
 </head>
 
 <body>
-
-    <div class="info">Colour game
-        <img id="moon" src="moon.svg" onclick="nightMode(0)">
-        <img id="bulb" src="bulb.svg" onclick="nightMode(1)">
-        <div class="bal" onclick="addFund()">
-            <img id="wallet" src="wallet.svg" alt="W">
-            <div class="inr">$45</div>
-        </div>
-    </div>
-    <hr>
-
-    <div class="addFund">
-        <input type="number" class="addAmount" placeholder="Enter Amount To Add">
-        <button id="add" onclick="cheat()">ADD</button>
-    </div>
-
-    <div class="container">
-        <div class="trend">
-            <img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img
-                src="soon.svg">
-            <img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img
-                src="soon.svg">
-            <img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img
-                src="soon.svg">
-            <img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img
-                src="soon.svg">
-            <img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img
-                src="soon.svg">
-            <img src="soon.svg"><img src="soon.svg"><img src="soon.svg">
-            <img src="soon.svg"><img src="soon.svg"><img src="soon.svg">
-        </div>
-
-        <div class="game">
-            <div class="id">#2345</div>
-            <div class="rg">
-                <div class="green" onclick="showBet(1)">
-                    <p>GREEN</p>
-                    <div class="tbgreen">Total bet: ₹00</div>
-                </div>
-                <div class="red" onclick="showBet(2)">
-                    <p>RED</p>
-                    <div class="tbred">Total bet: ₹00</div>
-                </div>
+        <div class="info">Colour game
+            <img id="moon" src="moon.svg" onclick="nightMode(0)">
+            <img id="bulb" src="bulb.svg" onclick="nightMode(1)">
+            <div class="bal" onclick="addFund()">
+                <img id="wallet" src="wallet.svg" alt="W">
+                <div class="inr">$45</div>
             </div>
         </div>
+        <hr>
 
-        <div class="bet">
-            <div class="ids">
+        <div class="addFund">
+            <input type="number" class="addAmount" placeholder="Enter Amount To Add">
+            <button id="add" onclick="cheat()">ADD</button>
+        </div>
+
+        <div class="container">
+            <div class="trend">
+                <img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img
+                    src="soon.svg">
+                <img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img
+                    src="soon.svg">
+                <img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img
+                    src="soon.svg">
+                <img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img
+                    src="soon.svg">
+                <img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img
+                    src="soon.svg">
+                <img src="soon.svg"><img src="soon.svg"><img src="soon.svg">
+                <img src="soon.svg"><img src="soon.svg"><img src="soon.svg">
+            </div>
+
+            <div class="game">
                 <div class="id">#2345</div>
-                <p onclick="hideBet()">X</p>
+                <div class="rg">
+                    <div class="green" onclick="showBet(1)">
+                        <p>GREEN</p>
+                        <div class="tbgreen">Total bet: ₹00</div>
+                    </div>
+                    <div class="red" onclick="showBet(2)">
+                        <p>RED</p>
+                        <div class="tbred">Total bet: ₹00</div>
+                    </div>
+                </div>
             </div>
 
-            <div class="add">
-                <button class="btn" onclick="add(5)">+5</button>
-                <button class="btn" onclick="add(10)">+10</button>
-                <button class="btn" onclick="add(50)">+50</button>
-                <button class="btn" onclick="add(100)">+100</button>
+            <div class="bet">
+                <div class="ids">
+                    <div class="id">#2345</div>
+                    <p onclick="hideBet()">X</p>
+                </div>
+
+                <div class="add">
+                    <button class="btn" onclick="add(5)">+5</button>
+                    <button class="btn" onclick="add(10)">+10</button>
+                    <button class="btn" onclick="add(50)">+50</button>
+                    <button class="btn" onclick="add(100)">+100</button>
+                </div>
+                <input type="number" class="amount" placeholder="Bet amount">
+                <div class="sub">
+                    <button class="btn btnm" onclick="sub(5)">-5</button>
+                    <button class="btn btnm" onclick="sub(10)">-10</button>
+                    <button class="btn btnm" onclick="sub(50)">-50</button>
+                    <button class="btn btnm" onclick="sub(100)">-100</button>
+                </div>
+                <button class="lock">BET</button>
             </div>
-            <input type="number" class="amount" placeholder="Bet amount">
-            <div class="sub">
-                <button class="btn btnm" onclick="sub(5)">-5</button>
-                <button class="btn btnm" onclick="sub(10)">-10</button>
-                <button class="btn btnm" onclick="sub(50)">-50</button>
-                <button class="btn btnm" onclick="sub(100)">-100</button>
-            </div>
-            <button class="lock">BET</button>
         </div>
-    </div>
 
-    <div class="count">
-        <div class="time">result in 60s</div>
-        <div class="showHistory" onclick="showHistory()">Bet Hostory</div>
+        <div class="count">
+            <div class="time">result in 60s</div>
+            <div class="showHistory" onclick="showHistory()">Bet Hostory</div>
 
-    </div>
+        </div>
 
-    <div class="here"></div>
+        <div class="here"></div>
 
-    <div class="confirm">Bet successfull</div>
+        <div class="confirm">Bet successfull</div>
 
 
 
@@ -473,11 +477,11 @@
 
         function countDown() {
             let p = new Promise((resolve, rejected) => {
-                for (let i = 0; i <= 30; i++) {
+                for (let i = 0; i <= 15; i++) {
                     setTimeout(() => {
-                        if (30 - i == 0)
+                        if (15 - i == 0)
                             resolve()
-                        time.innerHTML = `Result in <img src="arrow.svg"></img>${30 - i}`;
+                        time.innerHTML = `Result in <img src="arrow.svg"></img>${15 - i}`;
                     }, i * 1000)
                 }
             }).then(() => {
