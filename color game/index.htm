@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colour Game</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            font-size: 1.2rem;
+            font-weight: bolder;
+            margin: 5px;
+        }
+
+        #moon,
+        #bulb {
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        #bulb {
+            display: none;
+        }
+
+        .bal {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .inr {
+            color: red;
+            font-weight: bolder;
+        }
+
+        .container {
+            padding: 15px;
+        }
+
+        .trend,
+        .game,
+        .bet,
+        .addFund {
+            margin: 20px auto;
+            width: 90vw;
+            max-width: 415px;
+            box-shadow: 3px 3px 5px 0px rgba(0, 0, 0, 0.1);
+            border: solid #F2F3F5 2px;
+            height: 95px;
+            border-radius: 15px;
+            padding: 8px 25px;
+            overflow: hidden;
+            gap: 5px;
+        }
+
+        .trend {
+            display: flex;
+            flex-direction: row-reverse;
+            flex-wrap: wrap-reverse;
+        }
+
+        .trend img {
+            height: 28px;
+            width: 28px;
+            border-radius: 5px;
+            border: 1px solid;
+        }
+
+        .game {
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.6);
+            height: auto;
+        }
+
+        .id,
+        .ids {
+            color: brown;
+            font-weight: bolder;
+            font-size: 1.2rem;
+        }
+
+        .ids {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .ids>p {
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        .rg {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .green,
+        .red {
+            border: solid #ffffff 1px;
+            background-color: green;
+            border-radius: 10px;
+            padding: 10px 0;
+            box-shadow: #355E3B 0 -3px 5px inset, 0px 0px 8px rgba(0, 0, 0, 0.6);
+            color: white;
+            width: 150px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .red {
+            background-color: red;
+            margin-bottom: 20px;
+        }
+
+        .green>p,
+        .red>p {
+            font-size: 1.6rem;
+            text-align: center;
+        }
+
+        .tbgreen,
+        .tbred {
+            font-size: 0.7rem;
+            text-align: center;
+            margin: 7px;
+        }
+
+
+
+        .bet {
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.6);
+            display: none;
+            height: auto;
+        }
+
+        .add,
+        .sub {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn {
+            min-width: 15%;
+            height: 35px;
+            border-radius: 7px;
+            background-color: #e6ffe6;
+            border: 2px solid green;
+            margin: 20px 0;
+        }
+
+        .btnm {
+            background-color: #fbdfdf;
+            border: 2px solid red;
+        }
+
+        .amount,
+        .addAmount {
+            height: 30px;
+            padding: 10px;
+            width: 95%;
+            border-radius: 7px;
+            border: 3px solid rgb(188, 188, 188);
+            font-size: 1.2rem;
+        }
+
+        .lock,
+        #add {
+            height: 50px;
+            width: 50%;
+            margin: 10px 0 30px 50%;
+            transform: translate(-50%);
+            border-radius: 7px;
+            background-color: rgb(206, 213, 220);
+            cursor: pointer;
+        }
+
+        .count {
+            display: flex;
+            justify-content: space-between;
+            font-size: 20px;
+            max-width: 415px;
+            margin: 0 auto;
+            margin-bottom: 30px;
+        }
+
+        .confirm {
+            height: 50px;
+            width: 90%;
+            max-width: 413px;
+            display: none;
+            position: absolute;
+            top: 10px;
+            left: 49.9%;
+            transform: translate(-50%);
+            border-radius: 10px;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.6rem;
+            font-weight: bolder;
+            color: red;
+            background-color: aquamarine;
+        }
+
+        .addFund {
+            display: none;
+            max-width: 300px;
+            height: auto;
+        }
+
+        #add {
+            max-width: 200px;
+            margin-bottom: 10px;
+        }
+
+        .addAmount {
+            max-width: 300px;
+        }
+
+        .time,
+        .ref,
+        .showHistory {
+            display: flex;
+            padding: 10px;
+            border: 2px solid red;
+            border-radius: 7px;
+            background-color: #fbdfdf;
+            justify-content: center;
+        }
+
+        .time>img {
+            height: 22px;
+        }
+
+        .time {
+            width: 133px;
+        }
+
+        .ref,
+        .showHistory {
+            cursor: pointer;
+        }
+
+        .betHistory {
+            margin: 10px auto;
+            width: 90vw;
+            max-width: 415px;
+            border: 2px solid white;
+            border-radius: 7px;
+            padding: 5px;
+        }
+
+        .history,
+        .betResult {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: black;
+        }
+
+        .win {
+            background-color: rgb(126, 249, 126);
+        }
+
+        .loose {
+            background-color: rgb(253, 187, 187);
+        }
+
+        .right * {
+            display: inline-block;
+        }
+
+        .betResult {
+            font-size: 0.8rem;
+            color: rgb(93, 91, 91);
+            font-weight: 600;
+        }
+
+        .colorRed {
+            color: red;
+        }
+
+        .colorGreen {
+            color: green;
+        }
+
+        .here {
+            display: none;
+        }
+
+        /* .dot{
+            height: 20px;
+            width: 20px;
+            background-color: #e6ffe6;
+            border-radius: 50%;
+        } */
+    </style>
+</head>
+
+<body>
+
+    <div class="info">Colour game
+        <img id="moon" src="moon.svg" onclick="nightMode(0)">
+        <img id="bulb" src="bulb.svg" onclick="nightMode(1)">
+        <div class="bal" onclick="addFund()">
+            <img id="wallet" src="wallet.svg" alt="W">
+            <div class="inr">$45</div>
+        </div>
+    </div>
+    <hr>
+
+    <div class="addFund">
+        <input type="number" class="addAmount" placeholder="Enter Amount To Add">
+        <button id="add" onclick="cheat()">ADD</button>
+    </div>
+
+    <div class="container">
+        <div class="trend">
+            <img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img
+                src="soon.svg">
+            <img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img
+                src="soon.svg">
+            <img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img
+                src="soon.svg">
+            <img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img
+                src="soon.svg">
+            <img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img src="soon.svg"><img
+                src="soon.svg">
+            <img src="soon.svg"><img src="soon.svg"><img src="soon.svg">
+            <img src="soon.svg"><img src="soon.svg"><img src="soon.svg">
+        </div>
+
+        <div class="game">
+            <div class="id">#2345</div>
+            <div class="rg">
+                <div class="green" onclick="showBet(1)">
+                    <p>GREEN</p>
+                    <div class="tbgreen">Total bet: ₹00</div>
+                </div>
+                <div class="red" onclick="showBet(2)">
+                    <p>RED</p>
+                    <div class="tbred">Total bet: ₹00</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bet">
+            <div class="ids">
+                <div class="id">#2345</div>
+                <p onclick="hideBet()">X</p>
+            </div>
+
+            <div class="add">
+                <button class="btn" onclick="add(5)">+5</button>
+                <button class="btn" onclick="add(10)">+10</button>
+                <button class="btn" onclick="add(50)">+50</button>
+                <button class="btn" onclick="add(100)">+100</button>
+            </div>
+            <input type="number" class="amount" placeholder="Bet amount">
+            <div class="sub">
+                <button class="btn btnm" onclick="sub(5)">-5</button>
+                <button class="btn btnm" onclick="sub(10)">-10</button>
+                <button class="btn btnm" onclick="sub(50)">-50</button>
+                <button class="btn btnm" onclick="sub(100)">-100</button>
+            </div>
+            <button class="lock">BET</button>
+        </div>
+    </div>
+
+    <div class="count">
+        <div class="time">result in 60s</div>
+        <div class="showHistory" onclick="showHistory()">Bet Hostory</div>
+
+    </div>
+
+    <div class="here"></div>
+
+    <div class="confirm">Bet successfull</div>
+
+
+
+
+    <script>
+        let green = document.querySelector(".green");
+        let bet = document.querySelector(".bet");
+        let lock = document.querySelector(".lock");
+        let wallet = document.querySelector(".inr");
+        let game = document.querySelector(".game");
+        let amount = document.querySelector(".amount");
+        let time = document.querySelector(".time");
+        let trend = document.querySelector(".trend");
+        let gameId = document.querySelectorAll(".id");
+        let here = document.querySelector(".here")
+
+        var balance = 100;
+        var betAmount = 0;
+        var colour = -1;
+        let id = 2345
+
+        function showBet(color) {
+            if (colour == -1 || colour == color) {
+                amount.value = '';
+                game.setAttribute("style", "display:none");
+                bet.setAttribute("style", "display:block");
+                colour = color;
+            } else {
+                confirm("Can't Bet Both Sides")
+            }
+        }
+
+        function hideBet() {
+            bet.setAttribute("style", "display:none");
+            game.setAttribute("style", "display:block");
+        }
+
+        function updateBalance() {
+            wallet.innerHTML = '₹' + balance;
+        }
+        updateBalance();
+
+        lock.addEventListener("click", () => {
+            let betam = Number(amount.value);
+            if (betam >= 5) {
+                if (balance >= betam) {
+                    betAmount += betam;
+                    balance -= betam;
+                    console.log("Bet successfull");
+                    confirm("Bet Successfull");
+                    updateBalance();
+                    hideBet();
+                    if (colour == 1)
+                        document.querySelector(".tbgreen").innerHTML = "Total Bet: ₹" + betAmount
+                    else
+                        document.querySelector(".tbred").innerHTML = "Total Bet: ₹" + betAmount
+                } else {
+                    confirm("Insufficient Balance");
+                }
+            } else {
+                confirm("Minimum Amount is 5")
+            }
+            amount.value = '';
+        })
+
+        function result() {
+            console.log("inside result")
+            let win = Math.floor(Math.random() * (3 - 1) + 1);
+            updateTrend(win);
+            if (colour == -1 || betAmount < 5) {
+                return;
+            }
+            if (win == colour) {
+                confirm("You won");
+                balance += (betAmount * 2);
+                updateBalance()
+            } else {
+                confirm("You loose")
+                updateBalance()
+            }
+            history(id, colour, betAmount, win)
+            betAmount = 0;
+            colour = -1;
+        }
+
+        function countDown() {
+            let p = new Promise((resolve, rejected) => {
+                for (let i = 0; i <= 30; i++) {
+                    setTimeout(() => {
+                        if (30 - i == 0)
+                            resolve()
+                        time.innerHTML = `Result in <img src="arrow.svg"></img>${30 - i}`;
+                    }, i * 1000)
+                }
+            }).then(() => {
+                hideBet();
+                time.innerHTML = "Checking Result";
+                setTimeout(() => {
+                    result();
+                    id += 1
+                    gameId[0].innerHTML = '#' + id;
+                    gameId[1].innerHTML = '#' + id;
+                    countDown();
+                }, 3000)
+            })
+        }
+
+        countDown();
+
+        function confirm(text) {
+            let confirm = document.querySelector(".confirm");
+            confirm.innerHTML = text;
+            confirm.setAttribute("style", "display:flex");
+            setTimeout(() => {
+                confirm.setAttribute("style", "display:none")
+            }, 3000)
+        }
+
+        function add(num) {
+            let am = Number(amount.value)
+            amount.value = am + num
+        }
+
+        function sub(num) {
+            let am = Number(amount.value)
+            if (am - num < 0) {
+                amount.value = 0;
+            } else {
+                amount.value = am - num;
+            }
+        }
+
+        let arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+        function updateTrend(res) {
+            arr.unshift(res);
+            arr.pop();
+            arr.forEach((value, index) => {
+                if (value == 2)
+                    trend.children[index].src = "red.jpg";
+                else if (value == 1) {
+                    trend.children[index].src = "green.jpg";
+                }
+                else
+                    trend.children[index].src = "soon.svg";
+            })
+        }
+
+        function cheat() {
+            balance += Number(document.querySelector(".addAmount").value);
+            updateBalance();
+            document.querySelector(".addFund").setAttribute("style", "display:none");
+            document.querySelector(".addAmount").value = '';
+        }
+        function addFund() {
+            document.querySelector(".addFund").setAttribute("style", "display:block");
+        }
+
+
+
+        function history(id, colour, amount, result) {
+
+            let res = result == 1 ? "GREEN" : "RED";
+            let cl = colour == 1 ? "GREEN" : "RED";
+            let date = new Date();
+            let monthList = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+            let month = monthList[date.getMonth()];
+            let time = `${date.getHours()}:${date.getMinutes()}`
+            let bg = result == colour ? "win" : "loose";
+            let col = colour == 1 ? "colorGreen" : "colorRed";
+            let resultColor = result == 1 ? "colorGreen" : "colorRed";
+
+            let element = `<div class="betHistory ${bg}">
+                <div class="history">
+                    <div class="left">
+                        <div class="betId">#${id}</div>
+                    </div>
+
+                    <div class="right">
+                        <div class="col ${col}">${cl}<div class="dot"></div></div>
+                        <div class="am colorRed">₹${amount}</div>
+                    </div>
+                </div>
+        
+                <div class="betResult">
+                    <div class="betTime">${date.getDate()}-${month} ${time}</div>
+                    <div class="betResult ${resultColor}">RESULT>>${res}<div class="dot"></div></div>
+                    <br>
+                </div>
+            </div>`
+
+            here.insertAdjacentHTML("afterbegin", element);
+
+            if (here.children.length > 10) {
+                here.children[10].remove();
+            }
+        }
+
+
+        let show = true;
+        function showHistory() {
+            if (show) {
+                here.setAttribute("style", "display:block")
+                show = false;
+            } else {
+                here.setAttribute("style", "display:none")
+                show = true;
+            }
+        }
+
+        function nightMode(a) {
+            let moon = document.getElementById("moon");
+            let bulb = document.getElementById("bulb");
+            if (a) {
+                document.body.setAttribute("style", "background-color:white")
+                document.querySelector(".info").setAttribute("style", "color:black")
+                bulb.setAttribute("style", "display:none")
+                moon.setAttribute("style", "display:block")
+            } else {
+                document.body.setAttribute("style", "background-color:black")
+                document.querySelector(".info").setAttribute("style", "color:white")
+                moon.setAttribute("style", "display:none")
+                bulb.setAttribute("style", "display:block")
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
